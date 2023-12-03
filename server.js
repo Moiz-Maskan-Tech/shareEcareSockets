@@ -1,17 +1,28 @@
 const express = require("express");
 const path = require("path");
 var app = express();
+const cors = require("cors")
 var server = app.listen(3000, '0.0.0.0', function () { //remove ip 
   console.log("Listening on port 3000");
 });
 const fs = require("fs");
 const fileUpload = require("express-fileupload");
 const io = require("socket.io")(server, {
-  allowEIO3: true,
-  cors: {
-    origin: "*"
+  allowEIO3: true, // false by default
+  cors:{
+    origin: ["*"],
+    handlePreflightRequest: (req, res)=>{
+      res.writeHead(200,{
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET,POST",
+        "Access-Control-Allow_Headers": "abc-header",
+        "Access-Control-Allow-Credentials": true
+      });
+      res.end();
+    }
   }
 });
+app.use(cors());
 app.use(express.static(path.join(__dirname, "")));
 var userConnections = [];
 io.on("connection", (socket) => {
