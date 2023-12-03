@@ -7,22 +7,19 @@ var server = app.listen(3000, '0.0.0.0', function () { //remove ip
 });
 const fs = require("fs");
 const fileUpload = require("express-fileupload");
+const corsOptions = {
+  origin: "*",
+  optionSuccessStatus: 200
+}
 const io = require("socket.io")(server, {
   allowEIO3: true, // false by default
   cors:{
-    origin: ["*"],
-    handlePreflightRequest: (req, res)=>{
-      res.writeHead(200,{
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "GET,POST",
-        "Access-Control-Allow_Headers": "abc-header",
-        "Access-Control-Allow-Credentials": true
-      });
-      res.end();
-    }
+    origin: "*",
+    methods: ["PUT","GET","POST","DELETE","OPTIONS"],
+    credentials: false
   }
 });
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.static(path.join(__dirname, "")));
 var userConnections = [];
 io.on("connection", (socket) => {
