@@ -16,7 +16,7 @@ const io = require("socket.io")(server, {
   cors:{
     origin: "http://localhost:5500",
     methods: ["PUT","GET","POST","DELETE","OPTIONS"],
-    credentials: false
+    credentials: true
   }
 });
 app.use(cors(corsOptions));
