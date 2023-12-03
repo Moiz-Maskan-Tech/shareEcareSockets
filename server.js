@@ -8,7 +8,7 @@ const fs = require("fs");
 const fileUpload = require("express-fileupload");
 const io = require("socket.io")(server, {
   cors: {
-    origin: true
+    origin: 'http://127.0.0.1:5500'
   }
 });
 app.use(express.static(path.join(__dirname, "")));
