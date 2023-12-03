@@ -6,21 +6,12 @@ var server = app.listen(3000, '0.0.0.0', function () { //remove ip
 });
 const fs = require("fs");
 const fileUpload = require("express-fileupload");
-// Added middleware
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "http://127.0.0.1:5500");
-  res.header("Access-Control-Allow-Credentials", true);
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
 const io = require("socket.io")(server, {
   cors: {
-    origin: 'http://127.0.0.1:5500'
+    origin: "*"
   }
 });
 app.use(express.static(path.join(__dirname, "")));
-
-
 var userConnections = [];
 io.on("connection", (socket) => {
   console.log("socket id is ", socket.id);
