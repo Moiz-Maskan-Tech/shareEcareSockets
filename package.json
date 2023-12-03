@@ -7,11 +7,12 @@
     "node": "16.x"
   },
   "scripts": {
-    "start": "node server.js"  
+    "start": "node server.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "express-fileupload": "^1.2.1",
     "socket.io": "^4.1.2"
