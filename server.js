@@ -7,6 +7,7 @@ var server = app.listen(3000, '0.0.0.0', function () { //remove ip
 const fs = require("fs");
 const fileUpload = require("express-fileupload");
 const io = require("socket.io")(server, {
+  allowEIO3: true,
   cors: {
     origin: "*"
   }
