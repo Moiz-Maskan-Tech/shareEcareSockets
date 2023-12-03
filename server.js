@@ -14,7 +14,7 @@ const corsOptions = {
 const io = require("socket.io")(server, {
   allowEIO3: true, // false by default
   cors:{
-    origin: "*",
+    origin: "http://localhost:5500",
     methods: ["PUT","GET","POST","DELETE","OPTIONS"],
     credentials: false
   }
